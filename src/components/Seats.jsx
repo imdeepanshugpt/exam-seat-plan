@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import Table from "react-bootstrap/Table";
 
 function Seats({ data }) {
-  console.log("seats", data);
   const [row, setRow] = useState(data.row);
   const [col, setCol] = useState(data.col);
   const [start1, setStart1] = useState(data.start1);
@@ -34,7 +33,6 @@ function Seats({ data }) {
             
         }
     }
-    console.log(arrayValues);
 
     return (
       <>

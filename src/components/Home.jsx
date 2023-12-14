@@ -29,8 +29,7 @@ const Home = () => {
     };
 
     const totalCell = data.row * data.col;
-    const rangeDiff =
-      (data.end1 - data.start1) + (data.end2 - data.start2 );
+    const rangeDiff = data.end1 - data.start1 + (data.end2 - data.start2);
 
     if (data?.start1 > data?.end1) {
       setError("Range 1 : Roll no start should be less end");
@@ -39,7 +38,7 @@ const Home = () => {
     } else if (rangeDiff > totalCell) {
       setError("Number of students exceeds to number of seats");
     } else {
-        setError("");
+      setError("");
     }
 
     setFormData(data);
@@ -48,7 +47,7 @@ const Home = () => {
 
   return (
     <div className="container">
-        <h1>Create Exam Seat Plan</h1>
+      <h1>Create Exam Seat Plan</h1>
       <Form onSubmit={submitForm}>
         <Row className="mb-3">
           <Form.Group as={Col} sm={3} controlId="formGroupRow">
