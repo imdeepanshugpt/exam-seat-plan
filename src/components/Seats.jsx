@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Table from "react-bootstrap/Table";
+import Button from "react-bootstrap/Button";
+import html2canvas from "html2canvas";
+import downloadjs from 'downloadjs';
 
 function Seats({ data }) {
   const [row, setRow] = useState(data.row);
@@ -17,6 +20,13 @@ function Seats({ data }) {
     setEnd1(data.end1);
     setEnd2(data.end2);
   }, [data]);
+
+  const download = async () => {
+    const input = document.getElementById("tableSeatingPlan");
+    const canvas = await html2canvas(input);
+    const dataURL = canvas.toDataURL('image/png');
+    downloadjs(dataURL, 'download.png', 'image/png');
+  }
 
   const generateColumns = () => {
     let arrayValues = Array.from(Array(row), () => new Array(col).fill(0));
@@ -51,7 +61,9 @@ function Seats({ data }) {
   };
 
   return (
-    <Table responsive>
+    <>
+    <Button variant="danger" className="mt-5" onClick={download} >Download</Button>
+    <Table responsive id="tableSeatingPlan">
       <thead>
         <tr>
           <th>#</th>
@@ -62,6 +74,7 @@ function Seats({ data }) {
       </thead>
       <tbody>{generateColumns()}</tbody>
     </Table>
+    </>
   );
 }
 
